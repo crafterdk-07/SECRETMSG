@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret For You 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd6e8,#ffc2d1,#ffe5ec);
+    overflow:hidden;
+}
+
+.container{
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(20px);
+    padding:50px 35px;
+    border-radius:30px;
+    width:380px;
+    text-align:center;
+    box-shadow:0 10px 40px rgba(255,182,193,0.4);
+    animation:fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    color:#ff4d88;
+    margin-bottom:20px;
+}
+
+.secret{
+    font-size:18px;
+    color:#444;
+    filter:blur(8px);
+    transition:0.8s ease;
+    margin-bottom:25px;
+}
+
+.reveal-btn{
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff4d88;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 0 15px #ff4d88;
+}
+
+.reveal-btn:hover{
+    transform:scale(1.05);
+}
+
+/* floating hearts */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:18px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0) rotate(0deg);}
+    100%{transform:translateY(-100vh) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+    <source src="sorry.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <h1>Tap To Reveal My Heart 💕</h1>
+
+    <div class="secret" id="secretText">
+        I don't know when it happened…  
+        but somewhere between our conversations,  
+        I started caring a little more.  
+        And now… I really like you 💖
+    </div>
+
+    <button class="reveal-btn" onclick="revealMessage()">Reveal 💗</button>
+</div>
+
+<script>
+
+function revealMessage(){
+    document.getElementById("secretText").style.filter="blur(0)";
+}
+
+// floating hearts
+setInterval(function(){
+    var heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💗";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(function(){
+        heart.remove();
+    },6000);
+
+},700);
+
+// autoplay fix
+window.addEventListener("click",function(){
+    document.querySelector("audio").play();
+},{once:true});
+
+</script>
+
+</body>
+</html>
